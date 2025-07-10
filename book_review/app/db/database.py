@@ -1,9 +1,18 @@
 import databases
 import sqlalchemy
 
-DATABASE_URL = "sqlite:///./test.db"
-database = databases.Database(DATABASE_URL)
-engine = sqlalchemy.create_engine(DATABASE_URL)
+
+from databases import Database
+import sqlalchemy
+
+# ✅ Correct async URL format
+DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+
+# ✅ Async database object
+database = Database(DATABASE_URL)
+
+# ✅ SQLAlchemy engine for creating tables
+engine = sqlalchemy.create_engine("sqlite:///./test.db")
 
 from app.models.book import books, metadata
 from app.models.review import reviews
